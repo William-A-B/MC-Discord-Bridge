@@ -1,0 +1,138 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.flashbackmc.mcdiscordbot</groupId>
+	<artifactId>MCDiscordBot</artifactId>
+	<version>0.0.1</version>
+	<name>MCDiscordBot</name>
+	<description>MCDiscordBot for flashbackmc using JDA</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+     	<maven.compiler.source>1.8</maven.compiler.source>
+     	<maven.compiler.target>1.8</maven.compiler.target>
+
+		<author>Will88</author>
+        <mainClass>com.flashbackmc.mcdiscordbot.MCDiscordBot</mainClass>
+	</properties>
+
+	<repositories>
+	    <!-- This adds the Spigot Maven repository to the build -->
+	    <repository>
+	        <id>spigot-repo</id>
+	        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+	    </repository>
+	</repositories>
+	
+	<dependencies>
+	    <!--This adds the Spigot API artifact to the build -->
+	    <!-- Bukkit API-->
+	    <dependency>
+	           <groupId>org.spigotmc</groupId>
+	           <artifactId>spigot-api</artifactId>
+	           <version>1.8.8-R0.1-SNAPSHOT</version>
+	           <scope>provided</scope>
+	    </dependency>
+		<dependency>
+	            <groupId>org.bukkit</groupId>
+	            <artifactId>bukkit</artifactId>
+	            <version>1.8.8-R0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>net.dv8tion</groupId>
+		    <artifactId>JDA</artifactId>
+		    <version>5.0.0-beta.12</version>
+    	</dependency>
+    	
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <version>2.20.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.20.0</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+	    <plugins>
+	        <plugin>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.8.1</version>
+	            <configuration>
+	                <source>1.8</source>
+	                <target>1.8</target>
+	            </configuration>
+	        </plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+					<archive>
+					<manifest>
+						<mainClass>com.flashbackmc.mcdiscordbot.MCDiscordBot</mainClass>
+					</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+					<id>make-assembly</id>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+					</execution>
+				</executions>
+			</plugin> 
+	        <plugin>
+	            <artifactId>maven-shade-plugin</artifactId>
+	            <version>3.2.4</version>
+	            <configuration>
+	                <transformers>
+	                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+	                        <mainClass>YourMainClass</mainClass> <!--  -->
+	                    </transformer>
+	                </transformers>
+	                <createDependencyReducedPom>false</createDependencyReducedPom>
+	            </configuration>
+	            <executions>
+	                <execution>
+	                    <phase>package</phase>
+	                    <goals>
+	                        <goal>shade</goal>
+	                    </goals>
+	                </execution>
+	            </executions>            
+	        </plugin>
+	        <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-eclipse-plugin</artifactId>
+		        <configuration>
+		            <downloadSources>true</downloadSources>
+		            <downloadJavadocs>true</downloadJavadocs>
+		        </configuration>
+    		</plugin>
+	    </plugins>
+	    
+	    <resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>plugin.yml</include>
+					<include>config.yml</include>
+				</includes>
+			</resource>
+		</resources>
+	    
+	</build>
+
+
+</project>
+

@@ -1,0 +1,7 @@
+name: MCDiscordBot
+main: com.flashbackmc.mcdiscordbot.MCDiscordBot
+author: Will
+version: 0.1
+api-version: 1.8.8-R0.1-SNAPSHOT
+commands:
+

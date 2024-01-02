@@ -1,0 +1,5 @@
+# Replace "WebhookURL" with the URL to the webhook you would like to use.
+BotToken: 'Token'
+IngameChatChannelID: 'ChatChannelID'
+ServerConsoleChannelID: 'ConsoleChannelID'
+StatsChannelID: 'StatsChannelID'
