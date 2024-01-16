@@ -12,17 +12,14 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class DiscordMessageListener extends ListenerAdapter {
-
 	
 	private JDA jda;
-	
 	private Plugin mcDiscordBot;
 
 	public DiscordMessageListener(JDA jda, Plugin plugin) {
 		this.jda = jda;
 		this.mcDiscordBot = plugin;
 	}
-	
 	
 	@Override
 	public void onMessageReceived(MessageReceivedEvent event) {
@@ -32,21 +29,19 @@ public class DiscordMessageListener extends ListenerAdapter {
 			return;
 		}
 		
+		// Get the discord channel ID given in the config for relaying the messages
 		String ingameChatChannelID = mcDiscordBot.getConfig().getString("IngameChatChannelID");
-		MessageChannel ingameChatChannel = jda.getTextChannelById(ingameChatChannelID);
-
-		Message message = event.getMessage();
-		User user = event.getAuthor();
-		String messageContent = message.getContentRaw();
-		String userDisplayName = user.getGlobalName();
-		
+		// Get the channel someone sent a message in
 		MessageChannel channel = event.getChannel();
 		
+		// If user sent a message in the ingame chat channel
 		if (channel.getId().equals(ingameChatChannelID)) {
+			Message message = event.getMessage();
+			User user = event.getAuthor();
+			String messageContent = message.getContentRaw();
+			String userDisplayName = user.getGlobalName();
+			
 			Bukkit.broadcastMessage(ChatColor.DARK_GRAY + "[" + ChatColor.BLUE + "Discord" + ChatColor.DARK_GRAY + "] " + ChatColor.BLUE + userDisplayName + ": " + ChatColor.WHITE + messageContent);
 		}
-	
-		
 	}
-
 }
