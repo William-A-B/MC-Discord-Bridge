@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -DgroupId=org.bukkit -DartifactId=bukkit -Dversion=1.5.2-R1.0 -Durl=file:.\local-maven-repo\ -DrepositoryId=local-maven-repo -DupdateReleaseInfo=true -Dpackaging=jar -Dfile=.\craftbukkit-1.5.2.jar

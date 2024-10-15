@@ -17,6 +17,10 @@
 	</properties>
 
 	<repositories>
+		<repository>
+			<id>local-maven-repo</id>
+			<url>file:///${project.basedir}/local-maven-repo/</url>
+		</repository>
 	    <!-- This adds the Spigot Maven repository to the build -->
 	    <repository>
 	        <id>spigot-repo</id>
@@ -38,6 +42,12 @@
 	            <artifactId>bukkit</artifactId>
 	            <version>1.8.8-R0.1-SNAPSHOT</version>
 		</dependency>
+		
+<!--		<dependency>-->
+<!--			<groupId>org.bukkit</groupId>-->
+<!--        	<artifactId>bukkit</artifactId>-->
+<!--        	<version>1.5.2-R1.0</version>-->
+<!--        </dependency>-->
 		
 		<dependency>
 		    <groupId>net.dv8tion</groupId>
